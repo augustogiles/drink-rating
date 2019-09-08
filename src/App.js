@@ -1,15 +1,18 @@
 import React from 'react'
+import { connect } from 'react-redux'
+
+import Routes from './routes'
 
 class App extends React.Component {
 
     render(){
         return (
             <React.Fragment>
-                ALO
+                <Routes />
             </React.Fragment>
         )
     }
 
 }
 
-export default App
+export default connect()(App)
