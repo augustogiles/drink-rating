@@ -89,6 +89,7 @@ const INITIAL_STATE = {
     drinks:[],
 }
 
+
 const drinks = [
     {
         name: "F Negroamaro 2016",
@@ -99,7 +100,8 @@ const drinks = [
         region: "Salento",
         ratings_average: 4.3,
         ratings_count: 255,
-        type: "red"
+        type: "red",
+        src: require("./../../assets/wineBottles/negroamaro.png")
     },
     {
         name: "Luzzana Isola dei Nuraghi 2016",
@@ -110,7 +112,8 @@ const drinks = [
         region: "Isola dei Nuraghi",
         ratings_average: 4.0,
         ratings_count: 280,
-        type: "red"
+        type: "red",
+        src: require("./../../assets/wineBottles/luzzana-isola.png")
         
     },
     {
@@ -122,7 +125,8 @@ const drinks = [
         region: "Puglia",
         ratings_average: 4.2,
         ratings_count: 28,
-        type: "red"
+        type: "red",
+        src: require("./../../assets/wineBottles/vandalo.jpg")
         
     },{
         name: "Lamùri Nero d'Avola Regaleali 2015",
@@ -133,7 +137,8 @@ const drinks = [
         region: "Terre Siciliane",
         ratings_average: 3.9,
         ratings_count: 3359,
-        type: "red"
+        type: "red",
+        src: require("./../../assets/wineBottles/lamuri.png")
 
     },
     {
@@ -145,7 +150,8 @@ const drinks = [
         region: "Champagne Premier Cru",
         ratings_average: 4.2,
         ratings_count: 32083,
-        type: "sparkling"
+        type: "sparkling",
+        src: require("./../../assets/wineBottles/louis-roederer.png")
         
     },
     {
@@ -157,7 +163,8 @@ const drinks = [
         region: "Catalunya",
         ratings_average: 4.3,
         ratings_count: 24182,
-        type: "white"
+        type: "white",
+        src: require("./../../assets/wineBottles/vina-esmeralda.png")
         
     },
     {
@@ -169,7 +176,8 @@ const drinks = [
         region: "Douro",
         ratings_average: 3.5,
         ratings_count: 21805,
-        type: "rose"
+        type: "rose",
+        src: require("./../../assets/wineBottles/the-original.png")
         
     },
     {
@@ -181,7 +189,8 @@ const drinks = [
         region: "Salento",
         ratings_average: 4,
         ratings_count: 11550,
-        type: "fortified"
+        type: "fortified",
+        src: require("./../../assets/wineBottles/grahams.png")
         
     },
     {
@@ -193,7 +202,8 @@ const drinks = [
         region: "Douro",
         ratings_average: 3.5,
         ratings_count: 19082,
-        type: "red"
+        type: "red",
+        src: require("../../assets/wineBottles/casal-garcia.png")
         
     }
 ]
