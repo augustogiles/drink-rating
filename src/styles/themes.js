@@ -12,4 +12,9 @@ export const GlobalStyles = createGlobalStyle`
       font-family: 'Open Sans', sans-serif;
       font-size: 16px;
     }
+
+    #root>div {
+      padding: 56px 0 50px 0;
+    }
+
 `
