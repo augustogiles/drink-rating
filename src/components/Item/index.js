@@ -3,8 +3,6 @@ import { SRowItem, SFigure } from './styles';
 
 
 const Item = ( { wine, index, onClickForDetails } ) => {
-    console.log(index, onClickForDetails)
-
     function handleClick(e){
         e.preventDefault();
         onClickForDetails(index);
@@ -12,10 +10,9 @@ const Item = ( { wine, index, onClickForDetails } ) => {
 
     return (
         
-        <SRowItem>
+        <SRowItem className="row-item">
             <div className="img-box">
-                <SFigure image={wine.src}/>
-                {/* <img alt="wine-min" className="wine-min" src={wine.src}/> */}
+                <SFigure image={wine.thumb} onClick={handleClick}/>
             </div>
             <div className="wine-desc">
                 <div className="title"><a href={`/wine/${index}`} onClick={handleClick}>{wine.name}</a></div>

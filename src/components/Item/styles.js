@@ -1,12 +1,12 @@
 import styled from 'styled-components'
 
-export const SRowItem = styled.div`
+export const SRowItem = styled.li`
     position: relative;
     display: flex;
     align-items: center;
     padding: 10px 15px;
     margin-top: 10px;
-    border-radius: 8px;
+    border-radius: 20px;
     flex-wrap: wrap;
     box-shadow: 0px 1px 3px 0px rgba(0,0,0,0.2), 
                 0px 0px 1px 0px rgba(0,0,0,0.14), 
@@ -20,6 +20,7 @@ export const SRowItem = styled.div`
          align-self: center;
          position: relative;
          width: 100%;
+         border-radius: 20px;
     }
     img {
         max-width: 100%;
@@ -94,6 +95,4 @@ export const SFigure = styled.a `
     width: 100px;
     height: 100px;
     cursor: pointer;
-    // position: absolute;
-    border-radius: 8px;
 `
