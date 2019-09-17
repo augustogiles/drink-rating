@@ -24,7 +24,7 @@ export const SNavLogo = styled.a`
     color: white;
 
     .logo{
-        width: 16%;
+        width: 32px;
     }
 `
 export const SDivLogo = styled.div`
