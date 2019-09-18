@@ -7,19 +7,22 @@ export const Types = {
     RESET_DRINKS: createTypes('home/RESET_DATA'),
     GET_DRINKS: createRequestTypes('home/GET_DRINKS'),
     GET_DRINK: createRequestTypes('home/GET_DRINK'),
+    GET_DRINK_RATINGS: createRequestTypes('home/GET_DRINK_RATINGS'),
     DO_RATE: createRequestTypes('home/DO_RATE'),
 }
 
 export const Creators = {
     resetData: () => ({ type: Types.RESET_DRINKS['SUCCESS'] }),
     getDrinks: () => ({ type: Types.GET_DRINKS['GET']['REQUEST'] }),
-    getDrink: () => ({ type: Types.GET_DRINK['GET']['REQUEST'] }),
+    getDrink: data => ({ type: Types.GET_DRINK['GET']['REQUEST'], data }),
+    getDrinkRatings: data => ({ type: Types.GET_DRINK_RATINGS['GET']['REQUEST'], data }),
     doRate: data => ({ type: Types.DO_RATE['POST']['REQUEST'], data }),
 }
 
 export function* root() {
     yield takeLatest(Types.GET_DRINKS['GET']['REQUEST'], asyncGetDrinks)
     yield takeLatest(Types.GET_DRINK['GET']['REQUEST'], asyncGetDrink)
+    yield takeLatest(Types.GET_DRINK_RATINGS['GET']['REQUEST'], asyncGetDrinkRatings)
     yield takeLatest(Types.DO_RATE['POST']['REQUEST'], asynDoRate)
 }
 
@@ -45,14 +48,35 @@ function* asyncGetDrinks() {
 function* asyncGetDrink(action) {
     try {
         //TODO: BACKEND REQUEST
-        // const { data } = yield call(api.get, 'cardsHomePrices')
+        // const { data } = yield call(api.get, 'drink/{id}')
+        const id = action.data;
         console.log("ToDo: implement API call in  store/ducks/home.js file")
-        const payload = yield drinks
+        const payload = yield drinks[id];
 
         yield put({ type: Types.GET_DRINK['GET']['SUCCESS'], payload })
     } catch (err) {
         yield put({
-            type: Types.INVOICES['GET']['ERROR'],
+            type: Types.GET_DRINK['GET']['ERROR'],
+            error: { code: 500, message: 'Erro ao resgatar os preços' },
+
+            // TODO: BACKEND CONNECTION RESPONSE
+            // error: { code: err.response.data.result, message: err.response.data.message },
+        })
+    }
+}
+
+function* asyncGetDrinkRatings(action) {
+    try {
+        //TODO: BACKEND REQUEST
+        // const { data } = yield call(api.get, 'drink/{id}')
+        // const id = action.data;
+        console.log("ToDo: implement API call in  store/ducks/home.js file")
+        const payload = yield ratings;
+
+        yield put({ type: Types.GET_DRINK_RATINGS['GET']['SUCCESS'], payload })
+    } catch (err) {
+        yield put({
+            type: Types.GET_DRINK_RATINGS['GET']['ERROR'],
             error: { code: 500, message: 'Erro ao resgatar os preços' },
 
             // TODO: BACKEND CONNECTION RESPONSE
@@ -67,16 +91,16 @@ function* asynDoRate(action) {
         // TODO: BACKEND REQUEST
         // API(POST)
         // const { data } = yield call(api.post, 'amount', amount)
-        
+
         yield put({
-            type: Types.ADD_ENTITY['POST']['SUCCESS'],
+            type: Types.DO_RATE['POST']['SUCCESS'],
             payload: {},
             // payload: data.payload,
         })
-        
+
     } catch (err) {
         yield put({
-            type: Types.ADD_ENTITY['POST']['ERROR'],
+            type: Types.DO_RATE['POST']['ERROR'],
             error: { code: 500, message: 'Erro ao comprar serviço' },
             // TODO: BACKEND CONNECTION RESPONSE
             // error: { code: err.response.data.result, message: err.response.data.message },
@@ -86,7 +110,7 @@ function* asynDoRate(action) {
 
 const INITIAL_STATE = {
     error: {},
-    drinks:[],
+    drinks: [],
 }
 
 
@@ -101,7 +125,8 @@ const drinks = [
         ratings_average: 4.3,
         ratings_count: 255,
         type: "red",
-        src: require("./../../assets/wineBottles/negroamaro.png")
+        src: require("./../../assets/wineBottles/negroamaro.png"),
+        thumb: require("./../../assets/wineBottles/thumbs/negroamaro.png")
     },
     {
         name: "Luzzana Isola dei Nuraghi 2016",
@@ -113,8 +138,9 @@ const drinks = [
         ratings_average: 4.0,
         ratings_count: 280,
         type: "red",
-        src: require("./../../assets/wineBottles/luzzana-isola.png")
-        
+        src: require("./../../assets/wineBottles/luzzana-isola.png"),
+        thumb: require("./../../assets/wineBottles/thumbs/luzzanna.png")
+
     },
     {
         name: "Vandalo 2009",
@@ -126,9 +152,10 @@ const drinks = [
         ratings_average: 4.2,
         ratings_count: 28,
         type: "red",
-        src: require("./../../assets/wineBottles/vandalo.jpg")
-        
-    },{
+        src: require("./../../assets/wineBottles/vandalo.jpg"),
+        thumb: require("./../../assets/wineBottles/thumbs/vandalo.jpeg")
+
+    }, {
         name: "Lamùri Nero d'Avola Regaleali 2015",
         winery: "Tasca d'Almerita",
         amount: 8.5,
@@ -138,7 +165,8 @@ const drinks = [
         ratings_average: 3.9,
         ratings_count: 3359,
         type: "red",
-        src: require("./../../assets/wineBottles/lamuri.png")
+        src: require("./../../assets/wineBottles/lamuri.png"),
+        thumb: require("./../../assets/wineBottles/thumbs/lamuri.png")
 
     },
     {
@@ -151,8 +179,9 @@ const drinks = [
         ratings_average: 4.2,
         ratings_count: 32083,
         type: "sparkling",
-        src: require("./../../assets/wineBottles/louis-roederer.png")
-        
+        src: require("./../../assets/wineBottles/louis-roederer.png"),
+        thumb: require("./../../assets/wineBottles/thumbs/louis-roederer.png")
+
     },
     {
         name: "Viña Esmeralda N.V.",
@@ -164,8 +193,9 @@ const drinks = [
         ratings_average: 4.3,
         ratings_count: 24182,
         type: "white",
-        src: require("./../../assets/wineBottles/vina-esmeralda.png")
-        
+        src: require("./../../assets/wineBottles/vina-esmeralda.png"),
+        thumb: require("./../../assets/wineBottles/thumbs/vina-esmeralda.png")
+
     },
     {
         name: "The Original Rose",
@@ -177,8 +207,9 @@ const drinks = [
         ratings_average: 3.5,
         ratings_count: 21805,
         type: "rose",
-        src: require("./../../assets/wineBottles/the-original.png")
-        
+        src: require("./../../assets/wineBottles/the-original.png"),
+        thumb: require("./../../assets/wineBottles/thumbs/the-original.png")
+
     },
     {
         name: "Late Bottled Vintage Port N.V.",
@@ -190,8 +221,9 @@ const drinks = [
         ratings_average: 4,
         ratings_count: 11550,
         type: "fortified",
-        src: require("./../../assets/wineBottles/grahams.png")
-        
+        src: require("./../../assets/wineBottles/grahams.png"),
+        thumb: require("./../../assets/wineBottles/thumbs/grahams.png")
+
     },
     {
         name: "Douro Tinto N.V.",
@@ -203,8 +235,9 @@ const drinks = [
         ratings_average: 3.5,
         ratings_count: 19082,
         type: "red",
-        src: require("../../assets/wineBottles/casal-garcia.png")
-        
+        src: require("../../assets/wineBottles/casal-garcia.png"),
+        thumb: require("./../../assets/wineBottles/thumbs/casal-garcia.png")
+
     }
 ]
 
@@ -292,8 +325,12 @@ export default (state = INITIAL_STATE, action) => {
         case Types.GET_DRINKS['GET']['ERROR']:
             return { ...state }
         case Types.GET_DRINK['GET']['SUCCESS']:
-            return { ...state }
+            return { ...state, drink: action.payload }
         case Types.GET_DRINK['GET']['ERROR']:
+            return { ...state }
+        case Types.GET_DRINK_RATINGS['GET']['SUCCESS']:
+            return { ...state, comments: action.payload }
+        case Types.GET_DRINK_RATINGS['GET']['ERROR']:
             return { ...state }
         case Types.DO_RATE['POST']['SUCCES']:
             return { ...state }

@@ -6,6 +6,7 @@ import { Creators as CreatorsDrinks } from '../../store/ducks/drinks'
 import { Content } from '../../components/Content/styles'
 import Item from '../../components/Item'
 
+import { SList } from './styles';
 
 class Drinks extends React.Component {
     state = {
@@ -14,7 +15,7 @@ class Drinks extends React.Component {
     }
 
     componentDidMount(){
-        console.log(this.props.getDrinks())
+        this.props.getDrinks();
     }
 
     componentDidUpdate(prevProps) {
@@ -28,16 +29,17 @@ class Drinks extends React.Component {
     }
 
     handleDetails = (id) => {
-        console.log('click', id)
+        const {history} = this.props
+        console.log('click', id, history)
+        history.push(`/drinks/${id}`)
     }
 
     render(){
         const {drinks} = this.state
-        console.log(drinks.length)
         return (
-            <Content>
+            <SList className="item-wrapper">
                 {drinks.map((drink, i) => <Item key={i} wine={drink} index={i} onClickForDetails={this.handleDetails} />)}
-            </Content>
+            </SList>
         )
     }
 }
