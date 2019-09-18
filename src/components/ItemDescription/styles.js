@@ -69,11 +69,22 @@ export const SContent = styled.div`
     }
 
     @media (max-width: 425px) {
-        
+        padding: 4%;
         .content-meta {
-            padding: 0 4%;
+            padding: 0;
+            margin-left: 5%;
+
         }
         
+        .img-container {
+            display: flex;
+            align-items: center;
+            
+            img {
+                height: 50%;
+            }
+
+        }
     }
 
 `

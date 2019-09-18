@@ -32,6 +32,7 @@ export const SRowItem = styled.li`
         flex-direction: column;
         justify-content: space-evenly;
         
+        padding: 0 2%;
         width: 100%;
         height: 100%;
     }
@@ -46,7 +47,7 @@ export const SRowItem = styled.li`
 
     .comment-note {
         font-size: 20px;
-        line-height: 30px;
+        line-height: 24px;
         font-weight: 400;
         font-size: 18px;
         padding: 0 4%;
@@ -68,6 +69,10 @@ export const SRowItem = styled.li`
 
         width: 100%;
         height: 300px;
+
+        .comment-header {
+            padding: 0 4%;
+        }
         
     }
 

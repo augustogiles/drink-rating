@@ -84,10 +84,40 @@ export const SRowItem = styled.li`
         align-items: flex-end;
         margin-bottom: 4px;
     }
+
+    @media (max-width: 425px) {
+        justify-content: center;
+
+        .img-box {
+            display: flex;
+            justify-content: center;
+            max-width: 100%;
+            border-radius: 20px;
+
+            a {
+                border-radius: 20px
+            }
+        }
+
+        .wine-desc {
+            align-items: center;
+
+            .title {
+                display: flex;
+                padding-top: 2%;
+                
+                a:hover {
+                    color: rgb(137, 24, 38);
+                    text-decoration:none; 
+                    cursor:pointer;  
+                }
+            }
+        }
+    }
 `
 
 
-export const SFigure = styled.a `
+export const SFigure = styled.a`
     margin: 0;
     background-image: url(${props => props.image});
     background-size: cover;
