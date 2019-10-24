@@ -18,3 +18,11 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
     └── README.md
 
 
+### Getting Started
+
+to run this project you need to install all the dependencies and then start.
+
+```sh
+yarn install
+yarn start
+```
