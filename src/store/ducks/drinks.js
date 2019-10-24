@@ -1,5 +1,4 @@
 import { put, takeLatest } from 'redux-saga/effects'
-// import api from '../../services/api'
 
 import { createRequestTypes, createTypes } from './../../utils'
 
